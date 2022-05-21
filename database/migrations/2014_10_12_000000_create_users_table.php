@@ -23,13 +23,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
             
-
-            #llavae foranea con la tabla taquilla
-            $table->integer('taquilla_id')->unsigned();
-
-            // $table->foreign('taquilla_id')
-            //     ->references('id')
-            //     ->on('taquillas');
+            // php artisan make:model todo -mcr (migration, controller, request, model)
         });
     }
 
