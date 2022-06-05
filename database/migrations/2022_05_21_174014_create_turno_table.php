@@ -12,7 +12,7 @@ return new class extends Migration
      * @return void
      */
     public function up(){
-        Schema::create('turno', function (Blueprint $table) {
+        Schema::create('turnos', function (Blueprint $table) {
             $table->increments("id");
             $table->string('status')->default('activo');
             $table->date('fecha');
