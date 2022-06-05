@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\rolsController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,4 +27,7 @@ Route::get('/saludar', function () { #
         'status' => 'success',
     ]);
 });
+
+Route::resource('users', UsersController::class);
+Route::resource('roles',rolsController::class);
 
