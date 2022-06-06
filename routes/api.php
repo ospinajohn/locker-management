@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\rolController;
+use App\Http\Controllers\taquillaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,11 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Ruta de prueba
-Route::get('/saludar', function () { #
-    return response()->json([
-        'message' => 'Welcome to the API',
-        'status' => 'success',
-    ]);
-});
+Route::resource('/rol', rolController::class);
+Route::resource('/taquilla', taquillaController::class);
 

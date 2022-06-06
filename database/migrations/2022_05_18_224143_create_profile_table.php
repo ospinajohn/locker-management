@@ -22,7 +22,7 @@ return new class extends Migration
             #referencia de rol
             $table->foreign('rol_id')
                 ->references('id')
-                ->on('rol');
+                ->on('rols');
 
             #referencia de usuario
             $table->foreign('user_id')

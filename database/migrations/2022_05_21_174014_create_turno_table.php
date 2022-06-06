@@ -24,12 +24,12 @@ return new class extends Migration
             #referencia perfil
             $table->foreign('profile_id')
                 ->references('id')
-                ->on('profile');
+                ->on('profiles');
 
             #referencia taquilla
             $table->foreign('taquilla_id')
                 ->references('id')
-                ->on('taquilla');
+                ->on('taquillas');
 
 
 
