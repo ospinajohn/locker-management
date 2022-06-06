@@ -25,7 +25,8 @@ class taquillaController extends Controller
      */
     public function create()
     {
-        //
+        
+
     }
 
     /**
@@ -36,7 +37,8 @@ class taquillaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = taquilla::create($request->all());
+        return response()->json(['data' => $data], 201);
     }
 
     /**
@@ -47,7 +49,8 @@ class taquillaController extends Controller
      */
     public function show($id)
     {
-        //
+        return response()->json(
+            ['data' => taquilla::findOrFail($id)], 200); # findOrFail sirve para buscar un registro en especifico por su id
     }
 
     /**
@@ -70,7 +73,11 @@ class taquillaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = taquilla::findOrFail($id);
+        $data->update($request->all());
+        return response()->json([
+            'data' => $data
+        ], 200);
     }
 
     /**

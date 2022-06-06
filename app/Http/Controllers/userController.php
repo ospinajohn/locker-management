@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\rol;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class rolController extends Controller
+class userController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class rolController extends Controller
     public function index()
     {
         return response()->json(
-            ['data' => rol::all()], 200);
+            ['data' => User::all()], 200);
     }
 
     /**
@@ -25,7 +25,7 @@ class rolController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -36,7 +36,7 @@ class rolController extends Controller
      */
     public function store(Request $request)
     {
-        $data = rol::create($request->all());
+        $data = User::create($request->all());
         return response()->json(['data' => $data], 201);
     }
 
@@ -49,7 +49,7 @@ class rolController extends Controller
     public function show($id)
     {
         return response()->json(
-            ['data' => rol::findOrFail($id)], 200); # findOrFail sirve para buscar un registro en especifico por su id
+            ['data' => User::findOrFail($id)], 200); 
     }
 
     /**
@@ -72,7 +72,7 @@ class rolController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = rol::findOrFail($id);
+        $data = User::findOrFail($id);
         $data->update($request->all());
         return response()->json([
             'data' => $data
@@ -87,6 +87,10 @@ class rolController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = User::findOrFail($id);
+        $data->delete();
+        return response()->json([
+            'data' => $data
+        ], 200);
     }
 }

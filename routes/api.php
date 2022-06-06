@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\rolController;
 use App\Http\Controllers\taquillaController;
+use App\Http\Controllers\userController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::resource('usuario',userController::class);
 Route::resource('/rol', rolController::class);
 Route::resource('/taquilla', taquillaController::class);
+
 
