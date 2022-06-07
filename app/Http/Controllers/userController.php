@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\TryCatch;
 
 class userController extends Controller
 {
@@ -36,8 +37,16 @@ class userController extends Controller
      */
     public function store(Request $request)
     {
-        $data = User::create($request->all());
-        return response()->json(['data' => $data], 201);
+        try {
+            $data = User::create($request->all());
+            return response()->json(['data' => $data], 201);
+        } catch (\Exception $e) {
+            return response()->json([
+                'data' => $e->getMessage(),
+                'msg' => 'Error al crear el usuario'
+            ], 500);
+
+        }
     }
 
     /**
@@ -48,8 +57,15 @@ class userController extends Controller
      */
     public function show($id)
     {
-        return response()->json(
-            ['data' => User::findOrFail($id)], 200); 
+        try {
+            return response()->json(
+                ['data' => User::findOrFail($id)], 200); 
+        } catch (\Exception $e) {
+            return response()->json([
+                'data' => $e->getMessage(),
+                'message' => 'Usuario no encontrado'
+            ], 404);
+        }
     }
 
     /**
@@ -72,11 +88,19 @@ class userController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = User::findOrFail($id);
-        $data->update($request->all());
-        return response()->json([
+        try {
+            $data = User::findOrFail($id);
+            $data->update($request->all());
+            return response()->json([
             'data' => $data
-        ], 200);
+            ], 200);
+        } catch (\Exception $e) { 
+            return response()->json([
+            'data' => $e->getMessage(),
+            'msg' => 'Error, no se pudo actualizar el usuario'
+            ], 500);
+        }
+        
     }
 
     /**
@@ -87,10 +111,19 @@ class userController extends Controller
      */
     public function destroy($id)
     {
-        $data = User::findOrFail($id);
-        $data->delete();
-        return response()->json([
-            'data' => $data
+        try {
+            $data = User::findOrFail($id);
+            $data->delete();
+            return response()->json([
+            'data' => $data,
+            'msg' => 'Eliminado correctamente'
         ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => $e->getMessage(),
+                'msg' => 'No se pudo eliminar'
+            ], 500);
+        }
+        
     }
 }

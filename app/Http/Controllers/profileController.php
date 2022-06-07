@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\rol;
+use App\Models\profile;
 use Illuminate\Http\Request;
 
-class rolController extends Controller
+class profileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,17 @@ class rolController extends Controller
      */
     public function index()
     {
-        return response()->json(
-            ['data' => rol::all()], 200);
+        try {
+            return response()->json(
+            ['data' => profile::all()], 200);
+            
+        } catch (\Exception $e) {
+            return response()->json(
+            [
+                'error' => $e->getMessage(),
+                'msg' => 'Error al mostrar los perfiles'
+            ], 500);
+        }
     }
 
     /**
@@ -37,13 +46,17 @@ class rolController extends Controller
     public function store(Request $request)
     {
         try {
-            $data = rol::create($request->all());
-            return response()->json(['data' => $data], 201);
+            $data = profile::create($request->all());
+            return response()->json(
+            ['data' => $data], 201);
+            
         } catch (\Exception $e) {
             return response()->json(
-            ['error' => $e->getMessage()], 500);
+            [
+                'error' => $e->getMessage(),
+                'msg' => 'Error al crear el perfil'
+            ], 500);
         }
-        
     }
 
     /**
@@ -56,12 +69,15 @@ class rolController extends Controller
     {
         try {
             return response()->json(
-            ['data' => rol::findOrFail($id)], 200); # findOrFail sirve para buscar un registro en especifico por su id
+                ['data' => profile::findOrFail($id)], 200);
+            
         } catch (\Exception $e) {
             return response()->json(
-            ['error' => $e->getMessage()], 500);
+            [
+                'error' => $e->getMessage(),
+                'msg' => 'Error al mostrar el perfil'
+            ], 500);
         }
-        
     }
 
     /**
@@ -85,14 +101,17 @@ class rolController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $data = rol::findOrFail($id);
+            $data = profile::findOrFail($id);
             $data->update($request->all());
-            return response()->json([
-            'data' => $data
-            ], 200);
+            return response()->json(
+            ['data' => $data], 200);
+            
         } catch (\Exception $e) {
             return response()->json(
-            ['error' => $e->getMessage()], 500);
+            [
+                'error' => $e->getMessage(),
+                'msg' => 'Error al actualizar el perfil'
+            ], 500);
         }
     }
 
@@ -104,6 +123,18 @@ class rolController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $data = profile::findOrFail($id);
+            $data->delete();
+            return response()->json(
+            ['data' => $data], 200);
+            
+        } catch (\Exception $e) {
+            return response()->json(
+            [
+                'error' => $e->getMessage(),
+                'msg' => 'Error al eliminar el perfil'
+            ], 500);
+        }
     }
 }

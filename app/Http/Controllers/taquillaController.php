@@ -14,8 +14,14 @@ class taquillaController extends Controller
      */
     public function index()
     {
-        return response()->json(
+        try {
+            return response()->json(
             ['data' => taquilla::all()], 200);
+            
+        } catch (\Exception $e) {
+            return response()->json(
+            ['error' => $e->getMessage()], 500);
+        }
     }
 
     /**
@@ -37,8 +43,15 @@ class taquillaController extends Controller
      */
     public function store(Request $request)
     {
-        $data = taquilla::create($request->all());
-        return response()->json(['data' => $data], 201);
+        try {
+            $data = taquilla::create($request->all());
+            return response()->json(
+            ['data' => $data], 201);
+            
+        } catch (\Exception $e) {
+            return response()->json(
+            ['error' => $e->getMessage()], 500);
+        }
     }
 
     /**
@@ -49,8 +62,15 @@ class taquillaController extends Controller
      */
     public function show($id)
     {
-        return response()->json(
-            ['data' => taquilla::findOrFail($id)], 200); # findOrFail sirve para buscar un registro en especifico por su id
+        try {
+            return response()->json(
+                ['data' => taquilla::findOrFail($id)], 200);
+            
+        } catch (\Exception $e) {
+            return response()->json(
+            ['error' => $e->getMessage()], 500);
+        }
+         # findOrFail sirve para buscar un registro en especifico por su id
     }
 
     /**
@@ -73,11 +93,17 @@ class taquillaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = taquilla::findOrFail($id);
-        $data->update($request->all());
-        return response()->json([
+        try {
+            $data = taquilla::findOrFail($id);
+            $data->update($request->all());
+            return response()->json([
             'data' => $data
-        ], 200);
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json(
+            ['error' => $e->getMessage()], 500);
+        }
+        
     }
 
     /**

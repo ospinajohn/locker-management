@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\rol;
+use App\Models\turno;
 use Illuminate\Http\Request;
 
-class rolController extends Controller
+class turnoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,18 @@ class rolController extends Controller
      */
     public function index()
     {
-        return response()->json(
-            ['data' => rol::all()], 200);
+        try {
+            return response()->json(
+            ['data' => turno::all()], 200);
+            
+        } catch (\Exception $e) {
+            return response()->json(
+            [
+                'error' => $e->getMessage(),
+                'msg' => 'Error al mostrar los turnos'
+            ], 500);
+        }
+        
     }
 
     /**
@@ -37,13 +47,17 @@ class rolController extends Controller
     public function store(Request $request)
     {
         try {
-            $data = rol::create($request->all());
-            return response()->json(['data' => $data], 201);
+            $data = turno::create($request->all());
+            return response()->json(
+            ['data' => $data], 201);
+            
         } catch (\Exception $e) {
             return response()->json(
-            ['error' => $e->getMessage()], 500);
+            [
+                'error' => $e->getMessage(),
+                'msg' => 'Error al crear el turno'
+            ], 500);
         }
-        
     }
 
     /**
@@ -56,10 +70,14 @@ class rolController extends Controller
     {
         try {
             return response()->json(
-            ['data' => rol::findOrFail($id)], 200); # findOrFail sirve para buscar un registro en especifico por su id
+            ['data' => turno::findOrFail($id)], 200); # findOrFail sirve para buscar un registro en especifico por su id
+            
         } catch (\Exception $e) {
             return response()->json(
-            ['error' => $e->getMessage()], 500);
+            [
+                'error' => $e->getMessage(),
+                'msg' => 'Error al mostrar el turno'
+            ], 500);
         }
         
     }
@@ -85,14 +103,18 @@ class rolController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $data = rol::findOrFail($id);
+            $data = turno::findOrFail($id);
             $data->update($request->all());
             return response()->json([
-            'data' => $data
+                'data' => $data
             ], 200);
+            
         } catch (\Exception $e) {
             return response()->json(
-            ['error' => $e->getMessage()], 500);
+            [
+                'error' => $e->getMessage(),
+                'msg' => 'Error al actualizar el turno'
+            ], 500);
         }
     }
 
@@ -104,6 +126,18 @@ class rolController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $data = turno::findOrFail($id);
+            $data->delete();
+            return response()->json(
+            ['data' => $data], 200);
+            
+        } catch (\Exception $e) {
+            return response()->json(
+            [
+                'error' => $e->getMessage(),
+                'msg' => 'Error al eliminar el turno'
+            ], 500);
+        }
     }
 }
