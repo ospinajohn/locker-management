@@ -12,7 +12,7 @@ return new class extends Migration
      * @return void
      */
     public function up(){
-        Schema::create('turno', function (Blueprint $table) {
+        Schema::create('turnos', function (Blueprint $table) {
             $table->increments("id");
             $table->string('status')->default('activo');
             $table->date('fecha');
@@ -24,12 +24,12 @@ return new class extends Migration
             #referencia perfil
             $table->foreign('profile_id')
                 ->references('id')
-                ->on('profile');
+                ->on('profiles');
 
             #referencia taquilla
             $table->foreign('taquilla_id')
                 ->references('id')
-                ->on('taquilla');
+                ->on('taquillas');
 
 
 

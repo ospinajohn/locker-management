@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class rolsSeeder extends Seeder
+class taquillasSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,14 +15,11 @@ class rolsSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('rols')->insert([[
-            'name' => 'Administrador',
+        DB::table('taquillas')->insert([[
+            'name' => 'Cordoba',
             'status' => 'activo',
         ],[
-            'name' => 'Operador',
-            'status' => 'activo'
-        ],[
-            'name' => 'Usuario',
+            'name' => 'Bodegas',
             'status' => 'activo'
         ]
     ]);

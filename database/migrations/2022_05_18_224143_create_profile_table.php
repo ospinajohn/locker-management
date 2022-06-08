@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('profile', function (Blueprint $table) {
+        Schema::create('profiles', function (Blueprint $table) {
             $table->increments('id');
             $table->string('status');
             $table->integer('user_id')->unsigned();
@@ -22,7 +22,7 @@ return new class extends Migration
             #referencia de rol
             $table->foreign('rol_id')
                 ->references('id')
-                ->on('rol');
+                ->on('rols');
 
             #referencia de usuario
             $table->foreign('user_id')
