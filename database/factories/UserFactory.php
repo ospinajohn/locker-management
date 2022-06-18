@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -10,6 +11,7 @@ use Illuminate\Support\Str;
  */
 class UserFactory extends Factory
 {
+    protected $model = User::class; // protected es para que no se pueda sobreescribir
     /**
      * Define the model's default state.
      *
@@ -19,10 +21,11 @@ class UserFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
+            'apellidos' => $this->faker->lastName(),
+            'edad'=> $this->faker->numberBetween(5,60), //numberBetween(min,max) es un metodo de la clase faker para generar numeros aleatorios
             'email' => $this->faker->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'remember_token' => Str::random(10),
+            'password' => bcrypt('123456'), // password
+            // 'remember_token' => Str::random(10),
         ];
     }
 
