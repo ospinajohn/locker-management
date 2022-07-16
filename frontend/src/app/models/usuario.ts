@@ -4,6 +4,7 @@ export class Usuario {
     public apellidos: string;
     public edad: number;
     public email: string;
+    public password: string
     public status: string;
     set(data: any){
         this.id = data.id;
@@ -12,5 +13,6 @@ export class Usuario {
         this.edad = data.edad;
         this.email = data.email;
         this.status = data.status;
+        this.password = data.password;
     }
 }

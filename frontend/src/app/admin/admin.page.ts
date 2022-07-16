@@ -1,15 +1,20 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.page.html',
-  styleUrls: ['./admin.page.scss'],
+	selector: 'app-admin',
+	templateUrl: './admin.page.html',
+	styleUrls: ['./admin.page.scss'],
 })
 export class AdminPage implements OnInit {
+	constructor(public router: Router) {}
 
-  constructor() { }
+	ngOnInit() {}
+	inicio() {
+		this.router.navigate(['/home']);
+	}
 
-  ngOnInit() {
-  }
-
+	newUsuario() {
+		this.router.navigate(['/usuario-new']);
+	}
 }

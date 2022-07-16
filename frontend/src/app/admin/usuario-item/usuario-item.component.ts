@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/models/usuario';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
 	selector: 'app-usuario-item',
@@ -8,7 +9,17 @@ import { Usuario } from 'src/app/models/usuario';
 })
 export class UsuarioItemComponent implements OnInit {
     @Input() usuario: Usuario;
-	constructor() {}
+	constructor(
+        public usuarioService: UsuarioService
+    ) {}
 
 	ngOnInit() {}
+    borrar(){
+        this.usuarioService.delete(this.usuario.id).subscribe((res) => {
+            console.log('Borrado...');
+        }),
+        (error) => {
+            console.log(error);
+        };
+    }
 }
