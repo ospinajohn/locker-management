@@ -126,4 +126,14 @@ class userController extends Controller
         }
         
     }
+    public function get(){
+        try {
+            
+        } catch (\Exception $e) {
+            return response()->json([
+                'data' => $e->getMessage(),
+                'msg' => 'Error al obtener los usuarios'
+            ], 500);
+        }
+    }
 }

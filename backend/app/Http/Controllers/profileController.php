@@ -14,9 +14,10 @@ class profileController extends Controller
      */
     public function index()
     {
+        // return profile::with('getUsuario', 'getRole')->get();
         try {
             return response()->json(
-            ['data' => profile::all()], 200);
+            ['data' => profile::with('Usuario', 'Rol')->get()], 200);
             
         } catch (\Exception $e) {
             return response()->json(

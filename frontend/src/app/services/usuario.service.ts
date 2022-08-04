@@ -71,10 +71,10 @@ export class UsuarioService {
                 console.log('Borrado...');
                 this.all();
             }),
-            // catchError(err => {
-            //     console.log(err);
-            //     return err;
-            // }),
+            catchError(err => {
+                console.log(err);
+                return err;
+            }),
         );
     }
 }
