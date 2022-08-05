@@ -24,6 +24,7 @@ export class UsuarioListComponent implements OnInit {
     ) {}
 
 	ngOnInit() {
+        this.usuarios = [];
         this.usuarioSubscription = this.userservice.all$().subscribe((res: Usuario[])=>{
             this.usuarios = res;
         });
@@ -31,6 +32,7 @@ export class UsuarioListComponent implements OnInit {
             console.log('Listo...');
         });
 
+        this.perfiles = [];
         this.perfilSubscription = this.perfilservice.all$().subscribe((res: Perfil[])=>{
             this.perfiles = res;
         })

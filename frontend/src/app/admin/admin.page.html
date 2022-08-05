@@ -5,10 +5,15 @@
 </ion-header>
 
 <ion-content>
-    <h2 id="titleadmin">Usuarios</h2>
+    <h2 id="titleadmin">Todos los usuarios</h2>
     <ion-fab vertical="top" horizontal="end" edge slot="fixed" (click)="newUsuario()">
         <ion-fab-button>
             <ion-icon name="person"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+    <ion-fab vertical="bottom" horizontal="end"  slot="fixed" (click)="Allrols()">
+        <ion-fab-button>
+            <ion-icon name="list-outline"></ion-icon>
         </ion-fab-button>
     </ion-fab>
     <ion-fab vertical="top" horizontal="start" slot="fixed" (click)="inicio()">

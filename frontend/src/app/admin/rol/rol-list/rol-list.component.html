@@ -1,0 +1,11 @@
+
+<ion-list *ngIf="!bandera">
+    <app-rol-item *ngFor="let item of rols" [rol]="item" (click)="cargarRoles(item)"> 
+    </app-rol-item>
+</ion-list>
+
+<button (click)="bandera=!bandera">Buscar mas</button>
+<ion-list *ngIf="bandera">
+    <app-one-item *ngFor="let item of perfiles" [perfil]="item"> 
+    </app-one-item>
+</ion-list>

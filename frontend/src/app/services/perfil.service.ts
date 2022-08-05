@@ -14,6 +14,7 @@ export class PerfilService {
     public perfil$ = new Subject<Perfil>();
 
     public perfiles: Perfil[] = [];
+    public perfil: Perfil;
     public usuario: Perfil;
 	constructor(public http: HttpClient) {}
     all$(): Observable<Perfil[]> { // observable sirve para que se pueda subscribir en el componente y recibir la data
@@ -30,6 +31,16 @@ export class PerfilService {
                 console.log(err);
                 return err;
             }),
+        );
+    }
+    search(id): Observable<any> {
+        return this.http.get(`${this.url}perfil/search/${id}`).pipe(
+            map((res: any) => {
+                this.perfiles = res.data; // recibe la data y lo guarda en la variable usuarios
+                this.perfiles$.next(this.perfiles); // envia la data a la variable usuarios$ para que se pueda subscribir en el componente
+                return this.perfiles; // retorna la data que esta en la variable usuarios
+            }),
+        
         );
     }
 

@@ -138,4 +138,17 @@ class profileController extends Controller
             ], 500);
         }
     }
+    public function searchRol($id){
+        try {
+            return response()->json(
+                ['data' => profile::with('Usuario','Rol')->where('rol_id','=', $id)->get()], 200);
+        } catch (\Exception $e) {
+            return response()->json(
+            [
+                'error' => $e->getMessage(),
+                'msg' => 'Error al mostrar los perfiles'
+            ], 500);
+        }
+        
+    }
 }

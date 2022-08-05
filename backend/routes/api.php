@@ -29,4 +29,8 @@ Route::resource('/taquilla', taquillaController::class);
 Route::resource('turno', turnoController::class);
 Route::resource('perfil', profileController::class);
 
+Route::get('perfil/search/{id}', [profileController::class, 'searchRol']);
+
+
+
 

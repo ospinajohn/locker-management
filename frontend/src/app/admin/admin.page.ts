@@ -17,4 +17,7 @@ export class AdminPage implements OnInit {
 	newUsuario() {
 		this.router.navigate(['/usuario-new']);
 	}
+	Allrols() {
+		this.router.navigate(['/admin/rol']);
+	}
 }
