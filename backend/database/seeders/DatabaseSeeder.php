@@ -27,13 +27,13 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
-            // rolsSeeder::class,
-            // taquillasSeeder::class,
-            // turnoSeeder::class
+            rolsSeeder::class,
+            taquillasSeeder::class,
+            turnoSeeder::class
         ]);
-        // User::factory()->create();
-        // turno::factory()->count(10)->create();
-        // profile::factory()->count(10)->create();
+        User::factory()->create();
+        turno::factory()->count(10)->create();
+        profile::factory()->count(10)->create();
     }
     
 }

@@ -1,0 +1,15 @@
+
+<ion-list *ngIf="!bandera">
+    <app-rol-item *ngFor="let item of rols" [rol]="item" (click)="cargarRoles(item)"> 
+    </app-rol-item>
+</ion-list>
+
+<ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="bandera=!bandera">
+    <ion-fab-button>
+        <ion-icon name="sync-outline"></ion-icon>
+    </ion-fab-button>
+</ion-fab>
+<ion-list *ngIf="bandera">
+    <app-one-item *ngFor="let item of perfiles" [perfil]="item"> 
+    </app-one-item>
+</ion-list>

@@ -14,9 +14,10 @@ class profileController extends Controller
      */
     public function index()
     {
+        // return profile::with('getUsuario', 'getRole')->get();
         try {
             return response()->json(
-            ['data' => profile::all()], 200);
+            ['data' => profile::with('Usuario', 'Rol')->get()], 200);
             
         } catch (\Exception $e) {
             return response()->json(
@@ -136,5 +137,18 @@ class profileController extends Controller
                 'msg' => 'Error al eliminar el perfil'
             ], 500);
         }
+    }
+    public function searchRol($id){
+        try {
+            return response()->json(
+                ['data' => profile::with('Usuario','Rol')->where('rol_id','=', $id)->get()], 200);
+        } catch (\Exception $e) {
+            return response()->json(
+            [
+                'error' => $e->getMessage(),
+                'msg' => 'Error al mostrar los perfiles'
+            ], 500);
+        }
+        
     }
 }
