@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('apellidos')->nullable(); #nullable es para que no sea obligatorio
             $table->integer('edad')->nullable();
-            $table->string('email')->unique();
+            $table->string('email')->length(35)->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password'); 
             $table->string('status')->default('activo');#para que no se pueda registrar un usuario sin estar activo

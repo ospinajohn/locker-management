@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('status');
+            $table->string('status')->nullable();
             $table->integer('user_id')->unsigned();
             $table->integer('rol_id')->unsigned(); 
 

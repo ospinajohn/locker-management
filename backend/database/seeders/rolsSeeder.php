@@ -15,7 +15,7 @@ class rolsSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('rol')->insert([[
+        DB::table('rols')->insert([[
             'name' => 'Administrador',
             'status' => 'activo',
         ],[

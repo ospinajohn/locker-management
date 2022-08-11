@@ -15,7 +15,7 @@ class taquillasSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('taquilla')->insert([[
+        DB::table('taquillas')->insert([[
             'name' => 'Cordoba',
             'status' => 'activo',
         ],[

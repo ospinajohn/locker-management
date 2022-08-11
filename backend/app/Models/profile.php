@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class profile extends Model
 {
-    protected $fillable = ['profiles'];
+    protected $fillable = ['profiles', 'status', 'user_id', 'rol_id'];
 
     //Primero se crea un modelo para obetner los datos que estan relacionados con la tabla profile con usaurio y rol
     public function Usuario() {

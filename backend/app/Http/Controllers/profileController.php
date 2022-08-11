@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\profile;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class profileController extends Controller
@@ -47,7 +48,12 @@ class profileController extends Controller
     public function store(Request $request)
     {
         try {
-            $data = profile::create($request->all());
+            $user = User::where(['email' => $request->usuario['email']])->first();
+            $data = profile::create([
+                'status' => $request->status,
+                'user_id' => $user->id,
+                'rol_id' =>$request->rol['id']
+            ]);
             return response()->json(
             ['data' => $data], 201);
             
