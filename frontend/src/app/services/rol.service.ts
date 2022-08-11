@@ -32,6 +32,36 @@ export class RolService {
 			}),
         );
     }  
+    //Crear rol
+    create(data: Rol){
+        return this.http.post(`${this.url}rol/`, data)
+        .pipe( 
+            map((res: any) => {
+                this.rol = res.data; 
+                this.rol$.next(this.rol); 
+                return this.rol;
+            }),
+            catchError(err => {
+                console.log(err);
+                return err;
+            }),
+        );
+    }
+    // Obtener un rol por id
+    get(id: number): Observable<any> {
+        return this.http.get(`${this.url}rol/${id}`).pipe(
+            map((res: any) => {
+                this.rol = res.data;
+                this.rol$.next(this.rol);
+                return this.rol;
+            }),
+            catchError(err => {
+                console.log(err);
+                return err;
+            }),
+        );
+    }
+
     // buscar rol por id del rol
     search(id): Observable<any> {
         return this.http.get(`${this.url}rol/search/${id}`).pipe(

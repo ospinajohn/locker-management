@@ -33,8 +33,8 @@ export class UsuarioService {
 		);
 	}
     //obtener un solo usuario
-    get(id: string): Observable<any> {
-        return this.http.post(`${this.url}usuario/`, {id})
+    get(id: number): Observable<any> {
+        return this.http.get(`${this.url}usuario/${id}`)
         .pipe( // <-- URL y pipe es para el error 404
             map((res: any) => {
                 this.usuario = res.data; // recibe la data y lo guarda en la variable usuarios

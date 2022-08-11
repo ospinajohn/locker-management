@@ -16,7 +16,8 @@
         </ion-label>
         <ion-input placeholder="Apelldidos" type="text" formControlName="apellidos"></ion-input>
         <div>
-            <ion-text color="danger" *ngIf="form.get('apellidos').hasError('required') && form.get('apellidos').touched">
+            <ion-text color="danger"
+                *ngIf="form.get('apellidos').hasError('required') && form.get('apellidos').touched">
                 <p>Los apellidos son requeridos</p>
             </ion-text>
         </div>
@@ -43,9 +44,16 @@
             </ion-text>
         </div>
     </ion-item>
-    
-    
+    <ion-item>
+        <ion-select placeholder="Selecione Su rol" formControlName="rol"> 
+            <ion-select-option value="1">Admin</ion-select-option>
+            <ion-select-option value="2">Operador</ion-select-option>
+            <ion-select-option value="3">Turista</ion-select-option>
+        </ion-select>
+    </ion-item>
+
+
     <section>
-        <ion-button id="button-loggin" expand="block" [disabled]="form.invalid" (click)="onSave()">Crear</ion-button>
+        <ion-button id="button-loggin" expand="block" (click)="onSave()">Crear</ion-button>
     </section>
 </div>

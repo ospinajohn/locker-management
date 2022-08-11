@@ -33,6 +33,38 @@ export class PerfilService {
             }),
         );
     }
+    // Obtener perfil por id
+    get(id: number): Observable<any> {
+        return this.http.get(`${this.url}perfil/${id}`).pipe(
+            map((res: any) => {
+                this.perfil = res.data; 
+                this.perfil$.next(this.perfil); 
+                return this.perfil; 
+            }),
+            catchError(err => {
+                console.log(err);
+                return err;
+            }),
+        );
+    }
+    //Crear perfil
+    create(data: Perfil){
+        return this.http.post(`${this.url}perfil/`, data)
+        .pipe( 
+            map((res: any) => {
+                this.perfil = res.data; 
+                this.perfil$.next(this.perfil); 
+                return this.perfil;
+            }),
+            catchError(err => {
+                console.log(err);
+                return err;
+            }),
+        );
+    }
+
+
+
     search(id): Observable<any> {
         return this.http.get(`${this.url}perfil/search/${id}`).pipe(
             map((res: any) => {

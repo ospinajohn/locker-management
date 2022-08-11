@@ -29,7 +29,7 @@ export class UsuarioListComponent implements OnInit {
             this.usuarios = res;
         });
         this.userservice.all().subscribe(res => {
-            console.log('Listo...');
+            console.log('Listo...', this.usuarios);
         });
 
         this.perfiles = [];

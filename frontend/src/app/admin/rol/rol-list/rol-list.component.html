@@ -4,7 +4,11 @@
     </app-rol-item>
 </ion-list>
 
-<button (click)="bandera=!bandera">Buscar mas</button>
+<ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="bandera=!bandera">
+    <ion-fab-button>
+        <ion-icon name="sync-outline"></ion-icon>
+    </ion-fab-button>
+</ion-fab>
 <ion-list *ngIf="bandera">
     <app-one-item *ngFor="let item of perfiles" [perfil]="item"> 
     </app-one-item>

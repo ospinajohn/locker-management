@@ -15,7 +15,7 @@ class turnoSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('turnos')->insert([[
+        DB::table('turno')->insert([[
             'status' => 'activo',
             'fecha' => '2020-01-01',
             'hinicio' => '09:00:00',
